@@ -1,0 +1,216 @@
+/* Registration.module.css */
+.registrationContainer {
+  display: flex;
+  min-height: 100vh;
+  font-family: Arial, sans-serif; /* Changed font to Arial as per Login.module.css */
+  overflow: hidden;
+}
+
+.registrationLeft {
+  flex: 1;
+  background: #f7f9fc; /* Background from Login.module.css */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.registrationLeft img {
+  max-width: 80%; /* Adjusted max-width as per Login.module.css */
+  height: auto;
+}
+
+.registrationRight {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem; /* Padding from Login.module.css */
+  background-color: #fff; /* Explicitly set background for consistency */
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); /* Kept a subtle shadow */
+  position: relative;
+  overflow-y: auto;
+}
+
+.logo {
+  width: 50px; /* Width from Login.module.css */
+  margin-bottom: 1rem; /* Margin from Login.module.css */
+  height: auto; /* Ensure aspect ratio */
+}
+
+.registrationRight h2 {
+  font-size: 2.5em; /* Maintained larger size for heading */
+  color: #333;
+  margin-bottom: 30px; /* Slightly more space below title */
+  text-align: center;
+}
+
+.form {
+  width: 100%;
+  max-width: 300px; /* Max-width from Login.module.css */
+  display: flex;
+  flex-direction: column;
+  gap: 1rem; /* Consistent spacing for form elements */
+}
+
+.inputGroup {
+  position: relative;
+  margin-bottom: 1rem; /* Consistent spacing from Login.module.css */
+}
+
+.inputGroup input {
+  width: calc(100% - 40px); /* Adjust width for icon padding */
+  padding: 0.75rem 2.5rem 0.75rem 1rem; /* Padding from Login.module.css */
+  border: 1px solid #ccc; /* Border from Login.module.css */
+  border-radius: 8px; /* Rounded corners from Login.module.css */
+  box-sizing: border-box; /* Ensures padding is included in width */
+  font-size: 1rem;
+  color: #333;
+  background-color: #f9f9f9; /* Light background for input */
+  transition: all 0.3s ease;
+}
+
+.inputGroup input:focus {
+  border-color: #2baab1; /* Focus color similar to button hover */
+  box-shadow: 0 0 0 3px rgba(43, 170, 177, 0.2);
+  outline: none;
+}
+
+.inputIcon {
+  position: absolute;
+  right: 1rem; /* Position from Login.module.css */
+  top: 50%;
+  transform: translateY(-50%);
+  color: #aaa;
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px; /* Explicit width/height for icon */
+  height: 20px;
+  cursor: pointer;
+}
+
+.registerBtn {
+  width: 100%;
+  padding: 0.75rem; /* Padding from Login.module.css */
+  background: #2baab1; /* Background from Login.module.css */
+  border: none;
+  border-radius: 8px; /* Rounded corners from Login.module.css */
+  color: white;
+  font-size: 1rem;
+  font-weight: bold; /* Bold text for buttons */
+  cursor: pointer;
+  margin-top: 0.5rem; /* Margin from Login.module.css */
+  transition: background 0.3s, transform 0.2s; /* Added transform for subtle hover */
+  box-shadow: 0 4px 10px rgba(43, 170, 177, 0.3); /* Subtle shadow for buttons */
+}
+
+.registerBtn:hover {
+  background: #229a9f; /* Hover background from Login.module.css */
+  transform: translateY(-2px); /* Lift effect on hover */
+  box-shadow: 0 6px 15px rgba(43, 170, 177, 0.4);
+}
+
+.loginLink {
+  margin-top: 1rem; /* Consistent spacing */
+  color: #555;
+  font-size: 0.9rem; /* Consistent font size */
+}
+
+.loginLink a,
+.terms {
+  color: #007bff; /* Link color from Login.module.css */
+  text-decoration: none;
+  font-weight: bold; /* Bold text for links */
+}
+
+.loginLink a:hover,
+.terms:hover {
+  text-decoration: underline;
+}
+
+.terms {
+  margin-top: 0.5rem; /* Margin from Login.module.css */
+  font-size: 0.9rem;
+}
+
+.version {
+  margin-top: 2rem; /* Slightly more space for version */
+  font-size: 0.8em;
+  color: #bbb;
+}
+
+/* Modal Styles - Retained from previous version as they are new */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modalContent {
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  max-width: 400px;
+  width: 90%;
+}
+
+.modalContent p {
+  font-size: 1.1em;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.modalCloseBtn {
+  background-color: #2baab1; /* Matched button color */
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background-color 0.3s ease;
+}
+
+.modalCloseBtn:hover {
+  background-color: #229a9f; /* Matched button hover color */
+}
+
+
+/* Responsive Design - Adapted from Login.module.css */
+@media (max-width: 768px) {
+  .registrationContainer {
+    flex-direction: column;
+  }
+
+  .registrationLeft {
+    display: none; /* Hide illustration on small screens */
+  }
+
+  .registrationRight {
+    width: 100%;
+    padding: 30px; /* Adjusted padding for smaller screens */
+  }
+
+  .registrationRight h2 {
+    font-size: 2em; /* Smaller heading on mobile */
+  }
+
+  .form {
+    max-width: 300px; /* Ensures form doesn't stretch too wide */
+  }
+
+  .inputGroup input {
+    font-size: 0.9em; /* Smaller font for inputs on mobile */
+  }
+}

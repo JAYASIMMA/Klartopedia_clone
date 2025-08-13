@@ -1,0 +1,190 @@
+.passwordInput::-ms-reveal,
+.passwordInput::-ms-clear {
+  display: none;
+}
+
+.passwordInput::-webkit-credentials-auto-fill-button,
+.passwordInput::-webkit-clear-button,
+.passwordInput::-webkit-inner-spin-button,
+.passwordInput::-webkit-outer-spin-button,
+.passwordInput::-webkit-search-cancel-button {
+  display: none !important;
+}
+
+.passwordInput::-webkit-textfield-decoration-container {
+  display: none !important;
+}
+
+.loginContainer {
+  display: flex;
+  min-height: 100vh;
+  font-family: Arial, sans-serif;
+}
+
+.loginLeft {
+  flex: 1;
+  background: #f7f9fc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loginLeft img {
+  max-width: 80%;
+  height: auto;
+}
+
+.loginRight {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+.logo {
+  width: 50px;
+  margin-bottom: 1rem;
+}
+
+.roleTabs {
+  display: flex;
+  margin: 1rem 0;
+}
+
+.roleButton {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #2baab1;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.roleButton span {
+  margin-top: 5px;
+}
+
+.adminIcon {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
+.active {
+  background: #00a4bd;
+  color: white;
+}
+
+/* Form */
+.form {
+  width: 100%;
+  max-width: 300px;
+}
+
+.inputGroup input {
+  width: 100%;
+  padding: 0.75rem 2.5rem 0.75rem 1rem; /* space for icon */
+  border: 1px solid #ccc;
+  border-radius: 8px; /* same roundness */
+  box-sizing: border-box;
+  font-size: 1rem;
+}
+
+.loginBtn {
+  width: 100%;
+  padding: 0.75rem;
+  background: #2baab1;
+  border: none;
+  border-radius: 8px; /* same roundness */
+  color: white;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-top: 0.5rem; /* small gap above */
+  transition: background 0.3s;
+}
+
+.loginBtn:hover {
+  background: #229a9f;
+}
+
+.form {
+  width: 100%;
+  max-width: 300px;
+}
+
+.inputGroup {
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+.inputGroup input {
+  width: 100%;
+  padding: 0.75rem 2.5rem 0.75rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.inputIcon {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.loginBtn {
+  width: 100%;
+  padding: 0.75rem;
+  background: #2baab1;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  cursor: pointer;
+}
+
+.signup,
+.terms,
+.version {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.signup a,
+.terms {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.signup a:hover,
+.terms:hover {
+  text-decoration: underline;
+}
+
+/* ✅ Mobile responsive */
+@media (max-width: 768px) {
+  .loginContainer {
+    flex-direction: column;
+  }
+
+  .loginLeft {
+    display: none;
+  }
+
+  .loginRight {
+    width: 100%;
+  }
+}

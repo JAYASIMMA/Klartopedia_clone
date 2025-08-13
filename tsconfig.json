@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",                       // Modern output for faster builds
+    "useDefineForClassFields": true,          // Vite + React best practice
+    "lib": ["DOM", "DOM.Iterable", "ESNext"], // Keep DOM + latest JS features
+    "allowJs": false,                         // Usually not needed unless you mix JS + TS
+    "skipLibCheck": true,
+    "esModuleInterop": false,                 // Vite prefers this false
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "module": "ESNext",                        // Vite requires ESNext modules
+    "moduleResolution": "Node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx"                         // React 17+ JSX runtime
+  },
+  "include": ["src"],
+  "references": [{ "path": "./tsconfig.node.json" }]
+}
