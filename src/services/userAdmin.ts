@@ -4,14 +4,14 @@ import axios from 'axios';
 // IMPORTANT: Set your backend API base URL here.
 // Based on your Express router setup (router.post('/', ...)), if this router
 // is mounted under '/api/adminusers' in your main app, then this URL is correct.
-const API_BASE_URL = "http://192.168.236.167:3000/api/adminuser"; // Example: Adjust if your base path is different
+const API_BASE_URL = "http://10.140.43.100/api/adminuser"; // Example: Adjust if your base path is different
 
 // --- Interfaces for Request Payloads and Response Structures ---
 
 interface UserAdminPayload {
   name: string;
   username: string;
-  password?: string; // Password is optional for updates, but required for creation
+  password: string; // Password is optional for updates, but required for creation
   role: string;
   mobile_number: string;
   active_status?: number; // Optional for creation, but can be explicitly set

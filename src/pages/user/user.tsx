@@ -11,6 +11,7 @@ interface AdminUser {
   id: number;
   name: string;
   username: string;
+  password: string;
   role: string;
   mobile_number: string;
   active_status: number; // 0 or 1
@@ -171,9 +172,7 @@ const User: React.FC = () => {
               <h2 className="text-base font-semibold mb-3">{editIndex !== null ? "Edit Admin User" : "Add Admin User"}</h2>
               <input type="text" placeholder="Full Name" value={name} onChange={(e) => setName(e.target.value)} className="w-full border rounded px-3 py-2 mb-3 bg-white dark:bg-slate-700" />
               <input type="text" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} className="w-full border rounded px-3 py-2 mb-3 bg-white dark:bg-slate-700" />
-              {editIndex === null && (
                 <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} className="w-full border rounded px-3 py-2 mb-3 bg-white dark:bg-slate-700" />
-              )}
               <input type="text" placeholder="Role" value={role} onChange={(e) => setRole(e.target.value)} className="w-full border rounded px-3 py-2 mb-3 bg-white dark:bg-slate-700" />
               <input type="text" placeholder="Mobile Number" value={mobile} onChange={(e) => setMobile(e.target.value)} className="w-full border rounded px-3 py-2 mb-4 bg-white dark:bg-slate-700" />
               {/*
@@ -202,9 +201,10 @@ const User: React.FC = () => {
                       <th className="py-2 pr-2">S.No</th>
                       <th className="py-2 pr-2">Name</th>
                       <th className="py-2 pr-2">Username</th>
+                      <th className="py-2 pr-2">Password</th>
                       <th className="py-2 pr-2">Role</th>
                       <th className="py-2 pr-2">Mobile</th>
-                      <th className="py-2 pr-2">Active</th>
+                      {/*<th className="py-2 pr-2">Active</th>*/}
                       <th className="py-2 pr-2">Action</th>
                     </tr>
                   </thead>
@@ -221,9 +221,10 @@ const User: React.FC = () => {
                             <td className="py-2 pr-2">{(currentPage - 1) * pageSize + index + 1}</td>
                             <td className="py-2 pr-2">{user.name}</td>
                             <td className="py-2 pr-2">{user.username}</td>
+                            <td className="py-2 pr-2">{user.password}</td>
                             <td className="py-2 pr-2">{user.role}</td>
                             <td className="py-2 pr-2">{user.mobile_number}</td>
-                            <td className="py-2 pr-2">{user.active_status === 1 ? "Yes" : "No"}</td>
+                            {/*<td className="py-2 pr-2">{user.active_status === 1 ? "Yes" : "No"}</td>*/}
                             <td className="py-2 pr-2">
                               <div className="flex items-center gap-3">
                                 <FiEdit
@@ -231,6 +232,7 @@ const User: React.FC = () => {
                                   onClick={() => {
                                     setName(user.name);
                                     setUsername(user.username);
+                                    setPassword(user.password); 
                                     setRole(user.role);
                                     setMobile(user.mobile_number);
                                     setActiveStatus(user.active_status);
