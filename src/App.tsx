@@ -1,5 +1,7 @@
 import React from "react";
 import { HashRouter as Router, Routes, Route } from "react-router-dom";
+import { AuthProvider } from "./context/AuthContext";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 // Pages
 import Login from "./pages/login/login";
@@ -13,18 +15,44 @@ import PowerBIReport from "./pages/powerbianalysis/PowerBIReport";
 
 const App: React.FC = () => {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/register" element={<Registration />} />
-        <Route path="/home" element={<Home />} />
-        <Route path="/user" element={<User />} />
-        <Route path="/analysis" element={<PowerBIReport />} />
-        <Route path="/caste" element={<Caste />} />
-        <Route path="/academics" element={<Academics />} />
-        <Route path="/board" element={<Board />} />
-      </Routes>
-    </Router>
+    <AuthProvider>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Login />} />
+          <Route path="/register" element={<Registration />} />
+          <Route path="/home" element={
+            <ProtectedRoute>
+              <Home />
+            </ProtectedRoute>
+          } />
+          <Route path="/user" element={
+            <ProtectedRoute>
+              <User />
+            </ProtectedRoute>
+          } />
+          <Route path="/analysis" element={
+            <ProtectedRoute>
+              <PowerBIReport />
+            </ProtectedRoute>
+          } />
+          <Route path="/caste" element={
+            <ProtectedRoute>
+              <Caste />
+            </ProtectedRoute>
+          } />
+          <Route path="/academics" element={
+            <ProtectedRoute>
+              <Academics />
+            </ProtectedRoute>
+          } />
+          <Route path="/board" element={
+            <ProtectedRoute>
+              <Board />
+            </ProtectedRoute>
+          } />
+        </Routes>
+      </Router>
+    </AuthProvider>
   );
 };
 

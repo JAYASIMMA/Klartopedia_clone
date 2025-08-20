@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { FiHome, FiClock, FiLayers, FiBook, FiUser, FiUserCheck } from 'react-icons/fi';
+import UserProfile from './UserProfile';
 
 interface SidebarProps {
   isOpen: boolean;
@@ -81,6 +82,9 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, color = 'blue', onClose }) =>
             </li>
           ))}
         </ul>
+        
+        {/* User Profile Section */}
+        <UserProfile isSidebarOpen={isOpen} color={color} />
       </aside>
     </>
   );

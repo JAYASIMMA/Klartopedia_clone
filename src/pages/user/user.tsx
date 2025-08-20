@@ -1,11 +1,12 @@
 // src/pages/users/User.tsx
 import React, { useState, useEffect } from "react";
-import Sidebar from "../../components/Sidebar";
+import Layout from "../../components/Layout";
 import ThemeSettings from "../../components/ThemeSettings";
-import { FiMenu, FiBell, FiSettings, FiSun, FiMoon, FiEdit, FiTrash2 } from "react-icons/fi";
+import { FiSettings, FiSun, FiMoon, FiEdit, FiTrash2 } from "react-icons/fi";
 import Swal from "sweetalert2";
 import { getAllActiveAdminUsers, registerUserAdmin, updateAdminUser, deleteAdminUser } from "../../services/userAdmin";
 import { useTheme } from "../../context/ThemeContext";
+import { setUserCache, getUserCache } from "../../utils/cacheUtils";
 
 interface AdminUser {
   id: number;
@@ -18,7 +19,6 @@ interface AdminUser {
 }
 
 const User: React.FC = () => {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [isThemeSettingsOpen, setIsThemeSettingsOpen] = useState(false);
   const { darkMode, setDarkMode, sidebarColor, setSidebarColor } = useTheme();
 
@@ -53,10 +53,21 @@ const User: React.FC = () => {
   const loadUsers = async () => {
     setLoading(true);
     try {
+      // Try to get cached data first
+      const cachedUsers = getUserCache<AdminUser[]>('admin_users');
+      if (cachedUsers) {
+        setUsers(cachedUsers);
+        setCurrentPage(1);
+        setLoading(false);
+        return;
+      }
+
       const res = await getAllActiveAdminUsers();
       if (res.success && Array.isArray(res.data)) {
         setUsers(res.data);
         setCurrentPage(1);
+        // Cache the users data for 5 minutes
+        setUserCache('admin_users', res.data, 5 * 60 * 1000);
       } else {
         console.error("Error fetching users:", res.message);
       }
@@ -143,29 +154,21 @@ const User: React.FC = () => {
   };
 
   return (
-    <div className={`min-h-screen bg-slate-50 text-slate-900 dark:bg-slate-900 dark:text-slate-100`}>
-      <div className="flex min-h-screen">
-        <Sidebar isOpen={isSidebarOpen} color={sidebarColor} onClose={() => setIsSidebarOpen(false)} />
-        <div className={`flex-1 transition-all duration-300 p-4 ${isSidebarOpen ? "md:ml-[240px]" : "md:ml-[70px]"}`}>
-          <header className="sticky top-0 z-10 bg-white/80 dark:bg-slate-800/80 backdrop-blur border rounded-xl p-3 mb-4 flex items-center justify-between">
-            <button className="p-2 rounded border bg-white text-slate-700 border-slate-200 dark:bg-slate-900 dark:text-slate-200 dark:border-slate-700" onClick={() => setIsSidebarOpen(!isSidebarOpen)}>
-              <FiMenu size={22} />
+    <>
+      <Layout title="Admin Users">
+        <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center gap-3">
+            <button
+              aria-label="Toggle dark mode"
+              className={"p-2 rounded border " + (darkMode ? "bg-slate-900 text-yellow-300 border-slate-700" : "bg-white text-slate-700 border-slate-200")}
+              onClick={() => setDarkMode(!darkMode)}
+              title={darkMode ? "Switch to light" : "Switch to dark"}
+            >
+              {darkMode ? <FiMoon size={18} /> : <FiSun size={18} />}
             </button>
-            <h1 className="text-lg font-semibold">Admin Users</h1>
-            <div className="flex items-center gap-3">
-              <button
-                aria-label="Toggle dark mode"
-                className={"p-2 rounded border " + (darkMode ? "bg-slate-900 text-yellow-300 border-slate-700" : "bg-white text-slate-700 border-slate-200")}
-                onClick={() => setDarkMode(!darkMode)}
-                title={darkMode ? "Switch to light" : "Switch to dark"}
-              >
-                {darkMode ? <FiMoon size={18} /> : <FiSun size={18} />}
-              </button>
-              <FiBell size={20} />
-              <FiSettings size={20} className="cursor-pointer" onClick={() => setIsThemeSettingsOpen(!isThemeSettingsOpen)} />
-              <img src="https://i.pravatar.cc/40" alt="User" className="w-9 h-9 rounded-full" />
-            </div>
-          </header>
+            <FiSettings size={20} className="cursor-pointer" onClick={() => setIsThemeSettingsOpen(!isThemeSettingsOpen)} />
+          </div>
+        </div>
 
           <div className="grid lg:grid-cols-2 gap-6">
             <div className="bg-white dark:bg-slate-800 rounded-xl shadow p-5">
@@ -283,13 +286,12 @@ const User: React.FC = () => {
               )}
             </div>
           </div>
-        </div>
-      </div>
+        </Layout>
 
       {isThemeSettingsOpen && (
         <ThemeSettings onClose={() => setIsThemeSettingsOpen(false)} darkMode={darkMode} setDarkMode={setDarkMode} sidebarColor={sidebarColor} setSidebarColor={setSidebarColor} />
       )}
-    </div>
+    </>
   );
 };
 

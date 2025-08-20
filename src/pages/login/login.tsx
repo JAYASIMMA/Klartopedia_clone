@@ -1,16 +1,28 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import Swal from "sweetalert2";
 import styles from "./Login.module.css";
 import illustration from "../../assets/bg-01.png";
 import logo from "../../assets/logo.svg";
 import { loginUser } from "../../services/loginservices"; // 🔹 API service
+import { useAuth } from "../../context/AuthContext";
 
 const Login: React.FC = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [rememberMe, setRememberMe] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
+  const { login, isAuthenticated } = useAuth();
+
+  // Redirect if already authenticated
+  useEffect(() => {
+    if (isAuthenticated) {
+      const from = location.state?.from?.pathname || "/home";
+      navigate(from, { replace: true });
+    }
+  }, [isAuthenticated, navigate, location]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -18,8 +30,21 @@ const Login: React.FC = () => {
       const user = await loginUser(username, password);
 
       if (user) {
-        localStorage.setItem("user", JSON.stringify(user));
-        navigate("/home");
+        // Use the auth context to handle login
+        login(user);
+        
+        // Show success message
+        Swal.fire({
+          icon: "success",
+          title: "Login Successful",
+          text: `Welcome back, ${user.name}!`,
+          timer: 2000,
+          showConfirmButton: false,
+        });
+
+        // Navigate to intended page or home
+        const from = location.state?.from?.pathname || "/home";
+        navigate(from, { replace: true });
       } else {
         Swal.fire({
           icon: "error",
@@ -135,7 +160,11 @@ const Login: React.FC = () => {
           {/* Options */}
           <div className={styles.options}>
             <label>
-              <input type="checkbox" /> Remember me
+              <input 
+                type="checkbox" 
+                checked={rememberMe}
+                onChange={(e) => setRememberMe(e.target.checked)}
+              /> Remember me
             </label>
             <a href="/forgot">Forgot Password?</a>
           </div>
