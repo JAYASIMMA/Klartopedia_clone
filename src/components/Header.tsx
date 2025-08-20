@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
-import { FiUser, FiLogOut, FiSettings, FiMenu, FiBell } from 'react-icons/fi';
+import { useTheme } from '../context/ThemeContext';
+import { FiUser, FiLogOut, FiSettings, FiMenu, FiBell, FiSun, FiMoon } from 'react-icons/fi';
 
 interface HeaderProps {
   onMenuClick?: () => void;
   title?: string;
+  onThemeSettingsClick?: () => void;
 }
 
-const Header: React.FC<HeaderProps> = ({ onMenuClick, title = 'Dashboard' }) => {
+const Header: React.FC<HeaderProps> = ({ onMenuClick, title = 'Dashboard', onThemeSettingsClick }) => {
   const { user, logout } = useAuth();
+  const { darkMode, setDarkMode } = useTheme();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const handleLogout = () => {
@@ -34,8 +37,32 @@ const Header: React.FC<HeaderProps> = ({ onMenuClick, title = 'Dashboard' }) => 
           </h1>
         </div>
 
-        {/* Right side - User profile and notifications */}
+        {/* Right side - Controls and user profile */}
         <div className="flex items-center gap-3">
+          {/* Academic Year Dropdown */}
+          <select className="border rounded px-2 py-1 bg-white dark:bg-slate-700 text-sm">
+            <option>2023-2024</option>
+            <option>2024-2025</option>
+          </select>
+
+          {/* Theme Toggle */}
+          <button
+            aria-label="Toggle dark mode"
+            className={"p-2 rounded border " + (darkMode ? "bg-slate-900 text-yellow-300 border-slate-700" : "bg-white text-slate-700 border-slate-200")}
+            onClick={() => setDarkMode(!darkMode)}
+            title={darkMode ? "Switch to light" : "Switch to dark"}
+          >
+            {darkMode ? <FiMoon size={18} /> : <FiSun size={18} />}
+          </button>
+
+          {/* Settings */}
+          <button 
+            className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-slate-700 transition-colors"
+            onClick={onThemeSettingsClick}
+          >
+            <FiSettings className="w-5 h-5 text-gray-600 dark:text-gray-300" />
+          </button>
+
           {/* Notifications */}
           <button className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-slate-700 transition-colors relative">
             <FiBell className="w-5 h-5 text-gray-600 dark:text-gray-300" />

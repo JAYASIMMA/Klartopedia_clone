@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import Layout from "../../components/Layout";
 import ThemeSettings from "../../components/ThemeSettings";
-import { FiSettings, FiSun, FiMoon, FiEdit, FiTrash2 } from "react-icons/fi";
+import { FiEdit, FiTrash2 } from "react-icons/fi";
 import Swal from "sweetalert2";
 import { getAllActiveAdminUsers, registerUserAdmin, updateAdminUser, deleteAdminUser } from "../../services/userAdmin";
 import { useTheme } from "../../context/ThemeContext";
@@ -155,20 +155,7 @@ const User: React.FC = () => {
 
   return (
     <>
-      <Layout title="Admin Users">
-        <div className="flex items-center justify-between mb-4">
-          <div className="flex items-center gap-3">
-            <button
-              aria-label="Toggle dark mode"
-              className={"p-2 rounded border " + (darkMode ? "bg-slate-900 text-yellow-300 border-slate-700" : "bg-white text-slate-700 border-slate-200")}
-              onClick={() => setDarkMode(!darkMode)}
-              title={darkMode ? "Switch to light" : "Switch to dark"}
-            >
-              {darkMode ? <FiMoon size={18} /> : <FiSun size={18} />}
-            </button>
-            <FiSettings size={20} className="cursor-pointer" onClick={() => setIsThemeSettingsOpen(!isThemeSettingsOpen)} />
-          </div>
-        </div>
+      <Layout title="Admin Users" onThemeSettingsClick={() => setIsThemeSettingsOpen(!isThemeSettingsOpen)}>
 
           <div className="grid lg:grid-cols-2 gap-6">
             <div className="bg-white dark:bg-slate-800 rounded-xl shadow p-5">

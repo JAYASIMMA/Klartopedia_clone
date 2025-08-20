@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import Layout from "../../components/Layout";
 import ThemeSettings from "../../components/ThemeSettings";
-import { FiSettings, FiSun, FiMoon } from "react-icons/fi";
 import { useTheme } from "../../context/ThemeContext";
 
 const Home: React.FC = () => {
@@ -12,24 +11,7 @@ const Home: React.FC = () => {
 
   return (
     <>
-      <Layout title="Dashboard">
-        <div className="flex items-center justify-between mb-4">
-          <div className="flex items-center gap-3">
-            <select className="border rounded px-2 py-1 bg-white dark:bg-slate-700">
-              <option>2023-2024</option>
-              <option>2024-2025</option>
-            </select>
-            <button
-              aria-label="Toggle dark mode"
-              className={"p-2 rounded border " + (darkMode ? "bg-slate-900 text-yellow-300 border-slate-700" : "bg-white text-slate-700 border-slate-200")}
-              onClick={() => setDarkMode(!darkMode)}
-              title={darkMode ? "Switch to light" : "Switch to dark"}
-            >
-              {darkMode ? <FiMoon size={18} /> : <FiSun size={18} />}
-            </button>
-            <FiSettings size={20} className="cursor-pointer" onClick={toggleThemeSettings} />
-          </div>
-        </div>
+      <Layout title="Dashboard" onThemeSettingsClick={toggleThemeSettings}>
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
           {["Total Students","Total Classes","Total Teachers","Total Staff"].map((t, i) => (

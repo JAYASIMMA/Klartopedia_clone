@@ -7,12 +7,14 @@ interface LayoutProps {
   children: React.ReactNode;
   title?: string;
   showSidebar?: boolean;
+  onThemeSettingsClick?: () => void;
 }
 
 const Layout: React.FC<LayoutProps> = ({ 
   children, 
   title = 'Dashboard',
-  showSidebar = true 
+  showSidebar = true,
+  onThemeSettingsClick
 }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const { sidebarColor } = useTheme();
@@ -34,6 +36,7 @@ const Layout: React.FC<LayoutProps> = ({
           <Header 
             onMenuClick={showSidebar ? toggleSidebar : undefined}
             title={title}
+            onThemeSettingsClick={onThemeSettingsClick}
           />
           
           <main className="p-4">
