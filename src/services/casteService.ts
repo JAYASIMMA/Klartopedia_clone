@@ -7,7 +7,7 @@ export interface CasteType {
   active: number;
 }
 
-const API_BASE = "http://10.140.43.100/api/castecategoryinfo/allcaste"; 
+const API_BASE = "http://192.168.236.167:3000/api/castecategoryinfo/allcaste"; 
 // Replace with your actual caste API endpoint
 
 // GET all castes

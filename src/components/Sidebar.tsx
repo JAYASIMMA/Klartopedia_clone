@@ -32,7 +32,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, color = 'blue', onClose }) =>
     { name: 'Action Pending', icon: <FiClock />, path: '/action-pending' },
     { name: 'Departments', icon: <FiLayers />, path: '/departments' },
     { name: 'User', icon: <FiBook />, path: '/user' },
-    { name: 'Subjects', icon: <FiBook />, path: '/subjects' },
+    { name: 'Analysis', icon: <FiBook />, path: '/analysis' },
     { name: 'Caste', icon: <FiLayers />, path: '/caste' },
     { name: 'Teachers', icon: <FiUser />, path: '/teachers' },
     { name: 'Students', icon: <FiUserCheck />, path: '/students' },
