@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import axios from "axios";
 
-const API_BASE = "http://192.168.236.100:3000/api/academicyearinfo/academicyear";
+const API_BASE = "http://192.168.2.167:3000/api/academicyearinfo/academicyear";
 const DEFAULT_SCHOOL_ID = 23;
 
 // 🔹 Convert backend data to ensure `active` is always 0 or 1

@@ -2,7 +2,7 @@
 import axios from "axios";
 
 // Backend Base URL (update if needed)
-const API_BASE = "http://192.168.2.63:3000/api/adminuser";
+const API_BASE = "http://192.168.2.167:3000/api/adminuser";
 
 export interface AdminUser {
   id?: number;

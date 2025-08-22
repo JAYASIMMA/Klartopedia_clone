@@ -9,7 +9,7 @@ export interface BoardType {
 
 // Root of your Express router mount point, e.g. app.use('/api/boardinfo', router)
 const API_ROOT = (import.meta as any)?.env?.VITE_API_BASE?.replace(/\/$/, "") ||
-  "http://192.168.236.100:3000/api/boardinfo"; // fallback
+  "http://192.168.2.167:3000/api/boardinfo"; // fallback
 
 // Normalize possible Buffer-like active field coming from backend
 const normalizeActive = (activeField: any): number => {

@@ -4,7 +4,7 @@ import axios from 'axios';
 // IMPORTANT: Set your backend API base URL here.
 // Based on your Express router setup (router.post('/', ...)), if this router
 // is mounted under '/api/adminusers' in your main app, then this URL is correct.
-const API_BASE_URL = "http://192.168.236.100:3000/api/adminuser"; // Example: Adjust if your base path is different
+const API_BASE_URL = "http://192.168.2.167:3000/api/adminuser"; // Example: Adjust if your base path is different
 
 // --- Interfaces for Request Payloads and Response Structures ---
 

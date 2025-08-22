@@ -1,1 +1,9 @@
 /* Deprecated: Global layout now uses Tailwind. Keep for future custom tokens if needed. */
+.reportClassFullPage {
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 100vh;
+  min-width: 100vw;
+  border: none;
+  background: transparent;
+}
